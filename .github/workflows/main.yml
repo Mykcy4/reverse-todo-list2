@@ -42,8 +42,8 @@ jobs:
         with:
           type: now
           from_branch: dev
-          target_branch: my-feature
-          github_token: ${{ secrets.TOKEN }}
+          target_branch: main
+          
   
        
   
