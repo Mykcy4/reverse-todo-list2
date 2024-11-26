@@ -1,8 +1,7 @@
 name: Sync multiple branches
 on:
   push:
-    branches:
-      - master
+    branches: [ "main" ]
       
 jobs:
   sync-branch:
