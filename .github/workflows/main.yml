@@ -12,6 +12,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+      - name: test backend
+        working-directory: ./backend
       - run: npm install
       - run: npm test
       
