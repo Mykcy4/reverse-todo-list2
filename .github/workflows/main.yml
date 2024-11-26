@@ -4,14 +4,12 @@ on:
     branches: [ "dev" ]
       
 jobs:
-  
-  test-backend:
+  job1:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
-        working-directory: ./backends
-    
+        working-directory: ./backend
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
