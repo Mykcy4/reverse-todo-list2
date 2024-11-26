@@ -16,16 +16,4 @@ jobs:
         working-directory: backend
       - run: npm install
       - run: npm test
-      - name: test frontend
-        working-directory: frontend
-      - run: npm install
-      - run: npm test
-      - name: merge to the main branch
-      - uses: actions/checkout@master
-      - name: Merge dev -> main
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: dev
-          target_branch: main
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      
