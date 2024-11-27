@@ -1,7 +1,10 @@
 name: Sync multiple branches
+env:
+  GITHUB_TOKEN: ${{ secrets.TOKEN }}
 on:
   push:
     branches: [ "dev" ]
+    
       
 jobs:
   job1:
@@ -36,6 +39,7 @@ jobs:
   job4:
     runs-on: ubuntu-latest
     steps:
+     
       - name: Get existing branch protection
         id: get_branch_protection
         uses: octokit/request-action@v2.0.24
@@ -43,9 +47,7 @@ jobs:
           route: GET /repos/Mykcy4/reversse-todo-list2/branches/main/protection
           mediaType: |
             format: application/json
-        env:
-          # Uses a personal access token (PAT) from user with admin rights on repo
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        
       - run: echo ${{steps.get_branch_protection.outputs.data}}
      
   job3:
