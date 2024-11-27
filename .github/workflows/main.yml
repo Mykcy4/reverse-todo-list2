@@ -58,10 +58,11 @@ jobs:
       - name: Merge dev -> main
         uses: devmasx/merge-branch@v1.3.0
         with:
+          github_token: ${{ secrets.TOKEN }}
           type: now
           head_to_merge: dev
           target_branch: main
-          github_token: ${{ secrets.TOKEN }}
+          
           
   
        
