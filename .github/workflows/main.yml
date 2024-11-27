@@ -48,17 +48,30 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
   job4:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      attestations: write
+      id-token: write
     steps:
-     
-      - name: Get existing branch protection
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-        id: get_branch_protection
-        uses: octokit/request-action@v2.0.24
+      - uses: actions/checkout@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
-          route: GET /repos/Mykcy4/reversse-todo-list2/branches/main/protection
-          mediaType: |
-            format: application/json
-        
-      - run: echo ${{steps.get_branch_protection.outputs.data}}
-  
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+      - name: Run docker-compose
+        uses: hoverkraft-tech/compose-action@v2.0.1
+        with:
+          compose-file: "./docker/docker-compose.yml"
+
+      - name: Execute tests in the running services
+        run: |
+          docker-compose up --build -d
+      - name: Docker compose push
+        run: |
+          docker-compose push
+
+    
