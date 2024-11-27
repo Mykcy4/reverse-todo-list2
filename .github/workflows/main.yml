@@ -40,11 +40,11 @@ jobs:
     steps:
      
       - name: Get existing branch protection
-          
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  
         id: get_branch_protection
         uses: octokit/request-action@v2.0.24
         with:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           route: GET /repos/Mykcy4/reversse-todo-list2/branches/main/protection
           mediaType: |
             format: application/json
