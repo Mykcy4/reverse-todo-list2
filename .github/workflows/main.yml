@@ -1,6 +1,5 @@
 name: Sync multiple branches
-env:
-  GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
 on:
   push:
     branches: [ "dev" ]
@@ -41,6 +40,8 @@ jobs:
     steps:
      
       - name: Get existing branch protection
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         id: get_branch_protection
         uses: octokit/request-action@v2.0.24
         with:
