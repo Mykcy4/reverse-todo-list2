@@ -39,12 +39,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: everlytic/branch-merge@1.1.5
+      - name: Merge development -> staging
+        uses: devmasx/merge-branch@master
         with:
+          type: now
+          from_branch: dev
+          target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_ref: 'dev'
-          target_branch: 'master'
-          commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
   job4:
     runs-on: ubuntu-latest
     steps:
