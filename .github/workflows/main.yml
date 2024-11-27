@@ -35,6 +35,16 @@ jobs:
       - run: npm install
       - run: npm test
   
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: everlytic/branch-merge@1.1.2
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          source_ref: 'dev'
+          target_branch: 'master'
+          commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
   job4:
     runs-on: ubuntu-latest
     steps:
@@ -50,3 +60,4 @@ jobs:
             format: application/json
         
       - run: echo ${{steps.get_branch_protection.outputs.data}}
+  
