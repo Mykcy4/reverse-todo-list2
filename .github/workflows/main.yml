@@ -50,17 +50,3 @@ jobs:
             format: application/json
         
       - run: echo ${{steps.get_branch_protection.outputs.data}}
-     
-  job3:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Merge dev -> main
-      - uses: everlytic/branch-merge@1.1.2
-       
-          
-  
-       
-  
-  
-  
