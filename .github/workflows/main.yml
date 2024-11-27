@@ -66,6 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Merge dev -> main
       - uses: everlytic/branch-merge@1.1.2
         with:
           github_token: ${{ secrests.TOKEN }}
