@@ -56,7 +56,7 @@ jobs:
         uses: octokit/request-action@v2.0.24
         with:
           route: GET /repos/Mykcy4/reversse-todo-list2/branches/main/protection
-          mediaType: |
+          mediaType: 
             format: application/json
         
       - run: echo ${{steps.get_branch_protection.outputs.data}}
