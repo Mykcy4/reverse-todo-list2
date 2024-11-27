@@ -56,7 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Merge dev -> main
-        uses: devmasx/merge-branch@master
+        uses: devmasx/merge-branch@v1.3.0
         with:
           type: now
           head_to_merge: dev
