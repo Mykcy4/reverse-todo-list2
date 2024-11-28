@@ -42,13 +42,11 @@ jobs:
         shell: bash
         working-directory: ./e2e-tests
     steps:
-      - name: Set DOCKER_USERNAME environment variable
-        run: echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
-
-
       - name: Install e2e dependencies
         run: npm install
-
+      - name: Set DOCKER_USERNAME environment variable
+        run: echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
+      
       - name: Start Application with Docker Compose
         working-directory: ./
         run: |
