@@ -45,9 +45,19 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'  
-      - run: npm install
-      - run: npm test
+          node-version: '20.x' 
+      - name: Run E2E tests
+        env:
+          NODE_ENV: test
+        run: |
+          # Installer ChromeDriver et lancer les tests Selenium
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget -q https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          export PATH=$PATH:/usr/local/bin/
+          npm run test # Lancer les tests E2E avec Selenium
   
   merge-branch:
     runs-on: ubuntu-latest
