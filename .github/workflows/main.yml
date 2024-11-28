@@ -64,7 +64,7 @@ jobs:
           password: "eJHX7lFn1rQIOtknvhuu"
       - uses: adambirds/docker-compose-action@v1.5.0
         with:
-          compose-file: "./reverse-todo-list2/docker-compose.yml"
+          compose-file: "./reverse-todo-list2/"
         
 
 
