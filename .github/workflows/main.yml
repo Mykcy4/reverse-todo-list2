@@ -48,10 +48,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
   job4:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./reverse-todo-list2/docker
     permissions:
       packages: write
       contents: read
