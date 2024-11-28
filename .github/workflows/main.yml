@@ -51,7 +51,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./reverse-todo-list2
+        working-directory: ./reverse-todo-list2/docker
     permissions:
       packages: write
       contents: read
