@@ -11,6 +11,8 @@ on:
       - dev test branch
     types:
       - completed
+    branches:
+      - main
   
     
   
