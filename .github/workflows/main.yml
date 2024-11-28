@@ -74,6 +74,12 @@ jobs:
       - name: Push Docker images to Docker Hub 3
         run: |
           docker push glory971/frontendapp:latest
+      - name: Push Docker images to Docker Hub 2
+        run: |
+          docker tag reverse-todo-list2-backend glory971/frontendapp:latest
+      - name: Push Docker images to Docker Hub 3
+        run: |
+          docker push glory971/frontendapp:latest
         
 
 
