@@ -95,13 +95,18 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      - name: Log into registry ${{ env.REGISTRY }}
-        if: github.event_name != 'pull_request'
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x' 
+      - name: Set DOCKER_USERNAME environment variable
+        run: echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
+      - name: login dock
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ env.REGISTRY }}
           username: "glory971"
-          password: "eJHX7lFn1rQIOtknvhuu"
+          password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker images using docker-compose
         run: |
           docker compose build --push
