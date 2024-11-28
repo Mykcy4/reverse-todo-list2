@@ -50,7 +50,7 @@ jobs:
       - name: Install e2e dependencies
         run: npm install
       - name: Set DOCKER_USERNAME environment variable
-        run: echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
+        run: echo "DOCKER_USERNAME=${{ secrets.username }}" >> $GITHUB_ENV
       
       - name: Start Application with Docker Compose
         working-directory: ./
@@ -100,9 +100,9 @@ jobs:
         with:
           node-version: '20.x' 
       - name: Set DOCKER_USERNAME environment variable
-        run: echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
+        run: echo "DOCKER_USERNAME=${{ secrets.username }}" >> $GITHUB_ENV
       - name: Set DOCKER_PASSWORD environment variable
-        run: echo "DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> $GITHUB_ENV
+        run: echo "DOCKER_PASSWORD=${{ secrets.PASS }}" >> $GITHUB_ENV
       - name: login dock
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
