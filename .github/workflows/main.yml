@@ -68,7 +68,7 @@ jobs:
       - name: Run docker-compose
         uses: hoverkraft-tech/compose-action@v2.0.2 
         with:
-          compose-file: ""
+          compose-file: "./reverse-todo-list2"
 
 
       
