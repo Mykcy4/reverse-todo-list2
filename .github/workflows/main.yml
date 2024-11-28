@@ -60,7 +60,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.de }}
-          password: ${{ secrets.GITHUB_TN }}
+          password: ${{ secrets.PASSWORD }}
           
 
 
