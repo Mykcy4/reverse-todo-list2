@@ -91,6 +91,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
+      - name: Create local changes
+        run: |
+          ...
       - name: Commit files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
