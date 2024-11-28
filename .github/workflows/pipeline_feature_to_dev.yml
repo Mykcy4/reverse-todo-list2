@@ -80,17 +80,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
       - name: pull change
         run: |
-          git pull
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "main"
+          git pull main
       - uses: actions/checkout@v2
       - name: Merge development -> main
         uses: devmasx/merge-branch@master
