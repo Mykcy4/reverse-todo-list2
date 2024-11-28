@@ -48,6 +48,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
   job4:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./reverse-todo-list2
     permissions:
       packages: write
       contents: read
@@ -67,7 +71,7 @@ jobs:
       - name: Run docker-compose
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:
-          compose-file: "/docker-compose.yml"
+          compose-file: "docker-compose.yml"
 
       - name: Execute tests in the running services
         run: |
