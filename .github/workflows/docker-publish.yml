@@ -6,8 +6,10 @@ name: Docker
 # documentation.
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['pipeline_feature_to_dev.yml']
+    types: [completed]
     #
   
 
