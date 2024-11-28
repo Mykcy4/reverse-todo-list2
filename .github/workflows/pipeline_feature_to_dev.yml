@@ -1,0 +1,70 @@
+name: test dev branch
+#Chicaté Glory DE1
+on:
+  push:
+    branches: [ "dev" ]
+    
+      
+jobs:
+  backend_test_branch_dev:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./backend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'  
+      - run: npm install
+      - run: npm test
+  frontend_test_branch_dev:
+    runs-on: ubuntu-latest
+    needs:
+      - backend_test_branch_dev
+    if: needs.backend_test_branch_dev.result == 'success'
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./frontend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'  
+      - run: npm install
+      - run: npm test
+  
+  merge-branch:
+    runs-on: ubuntu-latest
+    needs:
+      - frontend_test_branch_dev
+    if: needs.frontend_test_branch_dev.result == 'success'
+    steps:
+      - name: pull-request-action
+        uses: vsoch/pull-request-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_PREFIX: "dev/"
+          PULL_REQUEST_BRANCH: "main"
+      - uses: actions/checkout@v2
+      - name: Merge development -> main
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: dev
+          target_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      
+
+        
+
+
+      
+        
+      
+
+    
