@@ -64,7 +64,7 @@ jobs:
           password: "eJHX7lFn1rQIOtknvhuu"
       - name: Build Docker images using docker-compose
         run: |
-          docker compose build -t glory971/theimage
+          docker compose build -push
       - name: Push Docker images to Docker Hub
         run: |
           docker  push glory971/theimage
