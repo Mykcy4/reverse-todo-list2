@@ -79,21 +79,11 @@ jobs:
   merge-branch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Merge development -> main
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: dev
-          target_branch: main
-          github_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-      - name: Create local changes
-        run: |
-          ...
+      
       - name: Commit files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -104,6 +94,15 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: "main"
+      - uses: actions/checkout@v2
+      - name: Merge development -> main
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: dev
+          target_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      
   Build_push_docker_image:
     runs-on: ubuntu-latest
     permissions:
