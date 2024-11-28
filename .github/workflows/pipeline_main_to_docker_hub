@@ -1,0 +1,77 @@
+name: test main branch 
+
+on:
+  push:
+    branches: [ "main" ]
+    
+      
+jobs:
+  backend_test_branch_dev:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./backend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'  
+      - run: npm install
+      - run: npm test
+  frontend_test_branch_dev:
+    runs-on: ubuntu-latest
+    needs:
+      - backend_test_branch_dev
+    if: needs.backend_test_branch_dev.result == 'success'
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./frontend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'  
+      - run: npm install
+      - run: npm test
+  
+  test_of_e2e_tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./e2e-tests
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x' 
+      - name: Install e2e dependencies
+        run: npm install
+      
+      - name: Start Application with Docker Compose
+        working-directory: ./
+        run: |
+          docker compose up -d
+          echo "Waiting for application to start..."
+          sleep 30
+      - name: Check if application is running
+        run: |
+          curl -v http://localhost:3000 || exit 1
+      - name: Run E2E tests
+        working-directory: ./e2e-tests
+        env:
+          NODE_ENV: test
+        run: |
+          # Installer ChromeDriver et lancer les tests Selenium
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget -q https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          export PATH=$PATH:/usr/local/bin/
+          npm run test # Lancer les tests E2E avec Selenium
