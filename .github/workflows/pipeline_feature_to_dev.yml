@@ -89,7 +89,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: push to main
         run: |
-          git push origin dev:main
+          git checkout main
+          git pull               # to update the state to the latest remote master state
+          git merge dev      # to bring changes to local master from your develop branch
+          git push origin main
   Build_push_docker_image:
     runs-on: ubuntu-latest
     permissions:
