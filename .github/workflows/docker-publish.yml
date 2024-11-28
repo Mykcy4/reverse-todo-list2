@@ -6,11 +6,13 @@ name: Docker
 # documentation.
 
 on:
-  workflow_dispatch:
   workflow_run:
-    workflows: ['pipeline_feature_to_dev.yml']
-    types: [completed]
-    #
+    workflows:
+      - pipeline_feature_to_dev.yml
+    types:
+      - completed
+  
+    
   
 
 jobs:
