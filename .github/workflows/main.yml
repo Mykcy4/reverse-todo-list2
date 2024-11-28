@@ -67,7 +67,7 @@ jobs:
           docker compose build
       - name: Push Docker images to Docker Hub
         run: |
-          docker compose push
+          docker compose push glory971/todo:lenouveau
         
 
 
