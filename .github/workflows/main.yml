@@ -62,11 +62,12 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: "glory971"
           password: "eJHX7lFn1rQIOtknvhuu"
-      - name: Run a script
-        run:  echo $(ls)
-      - uses: adambirds/docker-compose-action@v1.5.0
-        with:
-          compose-file: "/reverse-todo-list2/"
+      - name: Build Docker images using docker-compose
+        run: |
+          docker compose build
+      - name: Push Docker images to Docker Hub
+        run: |
+          docker compose push
         
 
 
