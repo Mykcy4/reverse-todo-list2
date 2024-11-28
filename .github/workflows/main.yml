@@ -67,7 +67,7 @@ jobs:
           docker compose build --push
       - name: Push Docker images to Docker Hub
         run: |
-          docker  push glory971/theimage
+          docker compose push 
         
 
 
