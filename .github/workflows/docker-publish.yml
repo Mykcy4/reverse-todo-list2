@@ -1,4 +1,4 @@
-name: Docker
+name: test main branch
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -6,13 +6,10 @@ name: Docker
 # documentation.
 
 on:
-  workflow_run:
-    workflows:
-      - dev test branch
-    types:
-      - completed
+  pull_request:
     branches:
       - main
+  
   
     
   
