@@ -87,6 +87,9 @@ jobs:
           from_branch: dev
           target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: push to main
+        run: |
+          git push -M main
   Build_push_docker_image:
     runs-on: ubuntu-latest
     permissions:
