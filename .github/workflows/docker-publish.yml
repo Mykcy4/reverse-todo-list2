@@ -8,7 +8,7 @@ name: Docker
 on:
   workflow_run:
     workflows:
-      - dev test branch
+      - test dev branch
     types:
       - completed
   
