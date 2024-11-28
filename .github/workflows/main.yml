@@ -72,15 +72,6 @@ jobs:
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:
           compose-file: "./docker/docker-compose.yml"
-      - name: voli
-        run: |
-          ls
-
-      - name: Execute tests in the running services
-        run: |
-          docker-compose up --build -d
-      - name: Docker compose push
-        run: |
-          docker-compose push
+      
 
     
