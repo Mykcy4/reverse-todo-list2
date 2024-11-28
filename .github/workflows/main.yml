@@ -59,14 +59,12 @@ jobs:
       id-token: write
     steps:
       - name: Log into registry ${{ env.REGISTRY }}
-        env: # Or as an environment variable
-          super_secret: ${{ secrets.PASS }}
         if: github.event_name != 'pull_request'
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ env.REGISTRY }}
           username: "glory971"
-          password: ${{ env.super_secret }}
+          password: "eJHX7lFn1rQIOtknvhuu"
           
 
 
