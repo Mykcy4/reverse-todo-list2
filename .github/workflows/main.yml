@@ -37,10 +37,6 @@ jobs:
   
   job16:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./e2e-tests
     steps:
       - name: Set DOCKER_USERNAME environment variable
         run: echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
