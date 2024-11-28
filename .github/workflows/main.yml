@@ -99,8 +99,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x' 
-      - name: Log into registry ${{ env.REGISTRY }}
-        if: github.event_name != 'pull_request'
       - name: Set DOCKER_USERNAME environment variable
         run: echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
       - name: login dock
