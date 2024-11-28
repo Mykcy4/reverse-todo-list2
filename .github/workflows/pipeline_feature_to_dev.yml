@@ -83,7 +83,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-      
+      - name: pull change
+        run: |
+          git pull
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
