@@ -64,7 +64,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: "glory971"
-          password: ${{ secrets.PASS }}
+          password: secrets.PASS
           
 
 
