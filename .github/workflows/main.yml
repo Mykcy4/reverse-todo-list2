@@ -54,6 +54,7 @@ jobs:
       attestations: write
       id-token: write
     steps:
+      - uses: actions/checkout@v4
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
@@ -61,8 +62,9 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: "glory971"
           password: "eJHX7lFn1rQIOtknvhuu"
-      - name: Run docker-compose
-        uses: adambirds/docker-compose-action@v1.5.0 
+      - uses: adambirds/docker-compose-action@v1.5.0
+        with:
+          compose-file: "./reverse-todo-list2/docker-compose.yml"
         
 
 
