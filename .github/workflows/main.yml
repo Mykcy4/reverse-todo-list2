@@ -62,7 +62,7 @@ jobs:
         run: |
           curl -v http://localhost:3000 || exit 1
       - name: Run E2E tests
-        working-directory: ../e2e-tests
+        working-directory: ./e2e-tests
         env:
           NODE_ENV: test
         run: |
