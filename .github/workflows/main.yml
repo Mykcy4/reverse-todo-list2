@@ -62,7 +62,10 @@ jobs:
           username: "glory971"
           password: "eJHX7lFn1rQIOtknvhuu"
       - name: Run docker-compose
-        uses: adambirds/docker-compose-action@v1.5.0 
+      - uses: actions/checkout@v4
+      - uses: adambirds/docker-compose-action@v1.5.0
+        with:
+          compose-file: "./reverse-todo-list2/docker-compose.yml"
         
 
 
