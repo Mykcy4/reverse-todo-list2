@@ -67,7 +67,10 @@ jobs:
           docker compose build --push
       - name: Push Docker images to Docker Hub
         run: |
-          docker compose push 
+          docker tag backend glory971/backendapp:v1.0
+      - name: Push Docker images to Docker Hub 2
+        run: |
+          docker push glory971/backendapp:v1.0
         
 
 
